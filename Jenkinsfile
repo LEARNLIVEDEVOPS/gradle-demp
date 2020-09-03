@@ -8,27 +8,7 @@ pipeline {
             }
         }
 
-        stage ('Artifactory configuration') {
-            steps {
-                rtServer (
-                    id: "ARTIFACTORY_SERVER",
-                    url: SERVER_URL,
-                    credentialsId: CREDENTIALS
-                )
-
-                rtGradleDeployer (
-                    id: "GRADLE_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    repo: "libs-release-local",
-                )
-
-                rtGradleResolver (
-                    id: "GRADLE_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    repo: "jcenter"
-                )
-            }
-        }
+       
 
         stage ('Exec Gradle') {
             steps {
@@ -43,12 +23,6 @@ pipeline {
             }
         }
 
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
-                )
-            }
-        }
+        
     }
-}
+
