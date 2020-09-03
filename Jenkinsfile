@@ -16,9 +16,8 @@ pipeline {
                     tool: GRADLE_TOOL, // Tool name from Jenkins configuration
                     rootDir: "gradle-examples/gradle-example-ci-server/",
                     buildFile: 'build.gradle',
-                    tasks: 'clean artifactoryPublish',
-                    deployerId: "GRADLE_DEPLOYER",
-                    resolverId: "GRADLE_RESOLVER"
+                    tasks: 'clean build',
+
                 )
             }
         }
